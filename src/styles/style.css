@@ -56,6 +56,12 @@
   color: #79378A;
   text-decoration: underline;
 }
+#home_screen #center_component #right_data {
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 body {
   overflow: hidden;

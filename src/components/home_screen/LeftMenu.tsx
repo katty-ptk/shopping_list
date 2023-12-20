@@ -6,8 +6,11 @@ import { IoIosNotifications } from "react-icons/io";
 import Logo from '../Logo';
 import LeftMenuItem from './LeftMenuItem';
 
+import { useScreenStore } from '../../stores/screens_state.store';
+import { useAppStateStore, screens } from '../../stores/app_state.store';
 
 const LeftMenu = () => {
+    const setScreen = useAppStateStore( (state) => state.setScreen);
 
     const [ selectedIndex, setSelectedIndex ] = useState(0);
 
@@ -70,7 +73,13 @@ const LeftMenu = () => {
               {
                 top_items.map( item => 
                   <span
-                    onClick={() => setSelectedIndex(top_items.indexOf(item))}  
+                    onClick={() => {
+                        setSelectedIndex(top_items.indexOf(item));
+                        setScreen({
+                            screen_index: top_items.indexOf(item), 
+                            screen_name: screens[top_items.indexOf(item)].screen_name
+                        })
+                    }}  
                   >
                     <LeftMenuItem
                       icon={item.icon}
@@ -86,7 +95,14 @@ const LeftMenu = () => {
               {
                 bottom_items.map( item => 
                   <span
-                    onClick={() => setSelectedIndex(top_items.length + bottom_items.indexOf(item))}  
+                    onClick={() => {
+                        setSelectedIndex(top_items.length + bottom_items.indexOf(item));
+
+                        setScreen({
+                            screen_index: top_items.length + bottom_items.indexOf(item), 
+                            screen_name: screens[top_items.length + bottom_items.indexOf(item)].screen_name
+                        })
+                    }}  
                   >
                     <LeftMenuItem
                       icon={item.icon}
@@ -96,7 +112,6 @@ const LeftMenu = () => {
                   </span>)
               }
             </div>
-    
         </div>
       )
     }
