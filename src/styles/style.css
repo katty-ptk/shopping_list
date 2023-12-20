@@ -30,8 +30,8 @@
 #home_screen #center_component #left_menu .top, #home_screen #center_component #left_menu .bottom {
   display: flex;
   flex-direction: column;
-  justify-content: start;
-  align-items: start;
+  justify-content: flex-start;
+  align-items: flex-start;
   padding-left: 30px;
 }
 #home_screen #center_component #left_menu .top #logo, #home_screen #center_component #left_menu .bottom #logo {
@@ -55,6 +55,12 @@
 #home_screen #center_component #left_menu .top .item .selected, #home_screen #center_component #left_menu .bottom .item .selected {
   color: #79378A;
   text-decoration: underline;
+}
+#home_screen #center_component #right_data {
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 body {
