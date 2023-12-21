@@ -2,6 +2,10 @@
     .other_lists {
         width: 100%;
 
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
+        border-left: 3px solid #802000;
     }
 }
