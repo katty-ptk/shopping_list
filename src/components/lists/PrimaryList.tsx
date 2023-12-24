@@ -1,8 +1,11 @@
 import React from 'react'
-import { IoMdBeer } from 'react-icons/io'
-import { MdCheckBox, MdOutlineCheckBoxOutlineBlank } from 'react-icons/md'
+import ListItem from './ListItem'
 
 function PrimaryList() {
+    const printItem = ( itemName: string, isItemSelected: boolean ) : void => {
+        console.log(`${itemName} is ${isItemSelected ? "completed" : "to be completed"}`)
+    }
+
   return (
     <div className="primary_list">
       <div className="card displayed_list_card">
@@ -13,43 +16,17 @@ function PrimaryList() {
         </div>
 
         <div className="list_items">
-            <div className="item">
-                <p>Beer 🍺</p>
-                <span>
-                    <MdOutlineCheckBoxOutlineBlank color='black' size={32}/>
-                </span>
-            </div>
-            <div className="item">
-                <p>Wine 🍷</p>
-                <span>
-                    <MdCheckBox color='green' size={32}/>
-                </span>
-            </div>
-            <div className="item">
-                <p>Wine 🍷</p>
-                <span>
-                    <MdCheckBox color='green' size={32}/>
-                </span>
-            </div>
-            <div className="item">
-                <p>Beer 🍺</p>
-                <span>
-                    <MdOutlineCheckBoxOutlineBlank color='black' size={32}/>
-                </span>
-            </div>
-            <div className="item">
-                <p>Wine 🍷</p>
-                <span>
-                    <MdCheckBox color='green' size={32}/>
-                </span>
-            </div>
-            <div className="item">
-                <p>Wine 🍷</p>
-                <span>
-                    <MdCheckBox color='green' size={32}/>
-                </span>
-            </div>
-        
+            <ListItem
+                item_name = 'Go Carroling'
+                selected = {false}
+                onItemClick={printItem}
+            />   
+
+            <ListItem
+                item_name = 'Work on App'
+                selected = {true}
+                onItemClick={printItem}
+            />        
         </div>
       </div>
 

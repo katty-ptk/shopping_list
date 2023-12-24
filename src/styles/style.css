@@ -125,6 +125,7 @@
   text-align: center;
   font-size: 1.2rem;
   font-weight: 500;
+  cursor: pointer;
 }
 .lists_screen .primary_list .displayed_list_card .list_items .item span {
   display: flex;
@@ -132,6 +133,12 @@
   align-items: center;
   text-align: right;
   width: 100%;
+  cursor: pointer;
+}
+.lists_screen .primary_list .displayed_list_card .list_items .item .completed_item {
+  text-decoration: line-through;
+  font-style: italic;
+  color: #838383;
 }
 .lists_screen .primary_list .add_item_form {
   width: 100%;
