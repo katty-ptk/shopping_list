@@ -1,32 +1,43 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ListItem from './ListItem'
+import { usePrimaryListStore } from '../../stores/primary_list.store'
 
 function PrimaryList() {
-    const printItem = ( itemName: string, isItemSelected: boolean ) : void => {
-        console.log(`${itemName} is ${isItemSelected ? "completed" : "to be completed"}`)
-    }
+
+    const [ newTask, setNewTask ] = useState<string>("");
+
+    const list_name = usePrimaryListStore( ( state ) => state.name );
+    const list_date = usePrimaryListStore( ( state ) => state.date );
+    const items = usePrimaryListStore( ( state ) => state.items );
+
+    const addItem = usePrimaryListStore( ( state ) => state.addItem );
 
   return (
     <div className="primary_list">
       <div className="card displayed_list_card">
         <div className="list_info">
-            <p>mon, 18 dec</p>
+            <p>{list_date}</p>
 
-            <h2>Today's List</h2>
+            <h2>{list_name}</h2>
         </div>
 
         <div className="list_items">
-            <ListItem
-                item_name = 'Go Carroling'
-                selected = {false}
-                onItemClick={printItem}
-            />   
+            {
 
-            <ListItem
-                item_name = 'Work on App'
-                selected = {true}
-                onItemClick={printItem}
-            />        
+                items.length > 0
+
+                    ? items.map(
+                        (item) =>
+                            <ListItem
+                                key={item.item_name}
+                                item_name={item.item_name}
+                                selected={item.selected}
+                                onItemClick={item.onItemClick}
+                            />
+                    )
+
+                    : <p>You don't have any items in your grocery list. Add one now</p>
+            }
         </div>
       </div>
 
@@ -34,9 +45,39 @@ function PrimaryList() {
         <input 
             type="text"
             placeholder='New item'
+            value={newTask}
+            onKeyUp={(e) => { 
+                if ( e.key === 'Enter') {
+                    addItem(
+                        items, 
+                        {
+                            item_name: newTask,
+                            selected: false,
+                            onItemClick: () => console.log(`clicked on ${newTask}`)
+                        }
+                    )
+
+                    setNewTask("")
+                }
+            }}
+            onChange={ (e) => setNewTask(e.target.value) }
         />
 
-        <button>
+        <button
+            onClick={ () => {
+                    addItem(
+                        items, 
+                        {
+                            item_name: newTask,
+                            selected: false,
+                            onItemClick: () => console.log(`clicked on ${newTask}`)
+                        }
+                    )
+
+                    setNewTask("")
+                }
+            }
+        >
             Add
         </button>
       </div>

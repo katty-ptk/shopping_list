@@ -126,6 +126,7 @@
   font-size: 1.2rem;
   font-weight: 500;
   cursor: pointer;
+  text-align: left;
 }
 .lists_screen .primary_list .displayed_list_card .list_items .item span {
   display: flex;
