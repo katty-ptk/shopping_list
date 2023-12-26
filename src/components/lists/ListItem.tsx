@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { MdCancel, MdCheckBox, MdOutlineCheckBoxOutlineBlank } from 'react-icons/md'
+import { MdCancel, MdOutlineCheckBoxOutlineBlank } from 'react-icons/md'
 
 export interface ListItemInterface {
     item_name: string,
