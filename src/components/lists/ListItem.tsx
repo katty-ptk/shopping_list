@@ -3,23 +3,24 @@ import { MdCancel, MdOutlineCheckBoxOutlineBlank } from 'react-icons/md'
 
 export interface ListItemInterface {
     item_name: string,
-    selected: boolean
-    onItemClick: () => void
+    selected: boolean,
+    selectItem: () => void,
+    removeItem?: ( itemToRemove: ListItemInterface ) => void
 }
 
 function ListItem(item: ListItemInterface) {
 
     const [isItemSelected, setIsItemSelected] = useState<boolean>(item.selected);
 
-    const onItemClick = () => onItemClick
+    const selectItem = () => item.selectItem
 
     return (
         <div className="item"
-            // onClick={() => item.onItemClick(item.item_name, item.selected)}
             onClick={ () => {
-                    setIsItemSelected(!isItemSelected)
-                    console.log(`${item.item_name} is: ${isItemSelected? "completed" : " to be completed"}`)
-                    onItemClick()
+                    if ( !isItemSelected ) {
+                        setIsItemSelected(!isItemSelected)
+                        selectItem()
+                    }
                 }
             }
         >
@@ -28,7 +29,11 @@ function ListItem(item: ListItemInterface) {
             <span>
                 {
                     isItemSelected
-                        ? <MdCancel size={32} color='red' /> 
+                        ? <MdCancel size={32} color='red' 
+                            onClick={ () => {  
+                               if ( item.removeItem ) item.removeItem(item)
+                            }}
+                        /> 
                         : <MdOutlineCheckBoxOutlineBlank size={32} />
                 }
             </span>
