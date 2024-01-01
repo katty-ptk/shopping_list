@@ -12,6 +12,7 @@ function PrimaryList() {
 
     const addItem = usePrimaryListStore( ( state ) => state.addItem );
     const removeItem = usePrimaryListStore( ( state ) => state.removeItem );
+    const completeItem = usePrimaryListStore( ( state ) => state.completeItem );
 
   return (
     <div className="primary_list">
@@ -33,7 +34,7 @@ function PrimaryList() {
                                 key={item.item_name}
                                 item_name={item.item_name}
                                 selected={item.selected}
-                                selectItem={item.selectItem}
+                                selectItem={completeItem}
                                 removeItem={removeItem}
                             />
                     )
@@ -54,8 +55,6 @@ function PrimaryList() {
                         {
                             item_name: newTask,
                             selected: false,
-                            selectItem: () => console.log(`clicked on ${newTask}`),
-                            // removeItem: () => removeItem
                         }
                     )
 
@@ -71,8 +70,6 @@ function PrimaryList() {
                         {
                             item_name: newTask,
                             selected: false,
-                            selectItem: () => console.log(`clicked on ${newTask}`),
-                            // removeItem: () => removeItem
                         }
                     )
 
