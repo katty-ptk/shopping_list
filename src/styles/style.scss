@@ -1,4 +1,11 @@
 @import "./home_screen/home_screen";
+@import './lists_screen/lists_screen';
+@import "./lists_screen/primary_list";
+@import "./lists_screen/other_lists";
+
+* {
+    font-family: 'Poppins';
+}
 
 body {
     overflow: hidden;

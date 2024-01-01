@@ -72,6 +72,7 @@ const LeftMenu = () => {
               {
                 top_items.map( item => 
                   <span
+                    key={item.text}
                     onClick={() => {
                         setSelectedIndex(top_items.indexOf(item));
                         setScreen({
@@ -94,6 +95,7 @@ const LeftMenu = () => {
               {
                 bottom_items.map( item => 
                   <span
+                    key={item.text}
                     onClick={() => {
                         setSelectedIndex(top_items.length + bottom_items.indexOf(item));
 
